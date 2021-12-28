@@ -3,99 +3,46 @@ reference: https://www.makeareadme.com/
 reference: https://commonmark.org/
 -->
 
-<!--
-TODO: Intro
+[![GitHub release (latest SemVer)](https://img.shields.io/github/v/release/whiletruedoio/container-template?logo=GitHub&label=Release&sort=semver)](https://github.com/whiletruedoio/container-template/releases)
+[![Docker Image Version](https://img.shields.io/docker/v/whiletruedoio/container-template?logo=Docker&label=Release&sort=semver)](https://hub.docker.com/r/whiletruedoio/container-template)
+[![GitHub issues](https://img.shields.io/github/issues/whiletruedoio/container-template)](https://github.com/whiletruedoio/container-template/issues)
+[![GitHub pull requests](https://img.shields.io/github/issues-pr/whiletruedoio/container-template)](https://github.com/whiletruedoio/container-template/pulls)
+[![GitHub license](https://img.shields.io/github/license/whiletruedoio/container-template)](https://github.com/whiletruedoio/container-template/blob/main/LICENSE)
 
-Thank you a lot for starting a new repository.
+# Container Template
 
-We want to be very transparent and provide proper documentation to users of
-products, software and services. To ensure this, we have set up this repository.
-
-Before going any further, please ensure that you have read the Contribution
-Guidelines and you are willing to accept these.
-
-Please read each of the below sections and comments carefully and check each
-section. It may happen that a section, file or content does not apply to you:
-Please feel free to remove sections or mention, that there is nothing needed
-or keep the TODO there until it is done.
-
-Please also search for the terms REPO_NAME and REPO_DESCRIPTION and replace them
-with some useful text.
-
-Before releasing something, we also recommend to get in touch with the project
-owners for a review of your code and documentation.
--->
-
-# REPO_NAME
-
-REPO_DESCRIPTION
+Templates and examples for new container repositories. 
 
 ## Motivation
 
-<!-- TODO: Motivation
-
-This section describes the motivation to create the software.
-
-Why is this repository needed?
-Which problem is solved?
-Who may need it?
--->
+Starting with containers can be intense and working towards best-practices is
+often taking a lot of time. This learning can be a lot easier, if a project is
+providing some pracices on its own and guiding new developers.
 
 ## Description
 
-<!-- TODO: Description
+The code in this repository is not intended to be used directly. Instead, it
+is providing some common scenarios and examples that may be handy, if one wants
+to develop containers. Below, you can find a list of the provideded examples.
 
-This section describes the software/code itself. Please describe the software
-thoroughly, so a user gets a good understanding what to expect, when using it.
+### Container
 
-Optional: Add subsections for features, screenshots, etc. and/or add files
-in docs/* (documents) or assets/* (pictures, images, diagrams).
--->
+The container examples can be used with [Docker](https://docker.com),
+[Podman](https://podman.io) or similar container engines and container
+orchestration. You will also find the container images in our
+[Docker Hub organization](https://hub.docker.com/u/whiletruedoio). You can find
+more details about the container itself in the README for it.
 
-## Usage
+- [Web Container]()
 
-We are really happy, that you consider using our software. In case you want to
-install and run the code on your machine, please check out this section.
+### Kubernetes
 
-### Requirements
+The [Kubernetes](https://kubernetes.io) examples demonstrate the usage of
+different Kubernetes deployments and scenarios. All of them can be used on a
+[k3s](https://k3s.io) cluster without any further tuning. The README for each
+deployment will explain how it can be used.
 
-<!-- TODO: Requirements
-
-This section describes what one needs to run the code in production.
-
-What is needed beforehand?
-What are prerequisites to start with an installation?
-Are there any dependencies, that needs to be solved?
-
-Optional: Use and link a docs/REQUIREMENTS.md
--->
-
-### Install
-
-<!-- TODO: Install
-
-This section describes how to install the product to actually use it.
-
-How to install the content?
-Are there manual steps?
-Providing a step-by-step guide is recommended.
-
-Optional: Use and link a docs/INSTALL.md
--->
-
-### Documentation
-
-<!-- TODO: Documentation
-
-This section describes how to use or administrate the software.
-
-First steps after the installation?
-Important things the user/admin should know?
-Could you provide examples to use the code?
-Were to find additional documentation?
-
-Optional: Use and link docs/*.md files
--->
+- [Web Deployment]()
 
 ## Contribute
 
@@ -110,8 +57,8 @@ Issues and Pull Requests are handled on a regular basis. Please be aware, that
 we may reach out to you, ask you to provide additional resources or want to
 discuss the issue a little, before planning it.
 
-- [Bugs and Feature Requests](https://github.com/whiletruedoio/REPO_NAME/issues)
-- [Pull Requests](https://github.com/whiletruedoio/REPO_NAME/pulls)
+- [Bugs and Feature Requests](https://github.com/whiletruedoio/container-template/issues)
+- [Pull Requests](https://github.com/whiletruedoio/container-template/pulls)
 
 ### Develop
 

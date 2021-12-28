@@ -1,0 +1,23 @@
+# Always specify the complete path to avoid conflicts.
+# It is also recommended to use a version tag.
+FROM docker.io/library/alpine:3
+
+# Adding a maintainer is recommended. There is a legacy way and the more modern
+# LABEL approach for this.
+MAINTAINER "dschier@while-true-do.io"
+LABEL org.opencontainers.image.authors="dschier@while-true-do.io"
+
+# Adding content should be done from "less often changing" to "more often
+# changing" to save some time during builds.
+RUN apk add apache2
+
+COPY src /var/www/localhost/htdocs
+
+# It is recommended to specify exposed ports, so container engines can detect
+# these. It is not needed, though.
+EXPOSE 80
+
+# It is recommended to use the ENTRYPOINT statement for containers, but also
+# needs some additional scripting. For simple examples, the CMD statement is
+# fine.
+CMD ["/usr/sbin/httpd","-DFOREGROUND"]
