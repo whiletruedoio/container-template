@@ -3,7 +3,7 @@ reference: https://www.makeareadme.com/
 reference: https://commonmark.org/
 -->
 
-[![Cirrus CI - Base Branch Build Status](https://img.shields.io/cirrus/github/whiletruedoio/container-remplate?logo=Cirrus-ci)](https://cirrus-ci.com/github/whiletruedoio/container-template)
+[![Cirrus CI - Base Branch Build Status](https://img.shields.io/cirrus/github/whiletruedoio/container-template?logo=Cirrus-ci)](https://cirrus-ci.com/github/whiletruedoio/container-template)
 [![GitHub release (latest SemVer)](https://img.shields.io/github/v/release/whiletruedoio/container-template?logo=GitHub&label=Release&sort=semver)](https://github.com/whiletruedoio/container-template/releases)
 [![GitHub issues](https://img.shields.io/github/issues/whiletruedoio/container-template)](https://github.com/whiletruedoio/container-template/issues)
 [![GitHub pull requests](https://img.shields.io/github/issues-pr/whiletruedoio/container-template)](https://github.com/whiletruedoio/container-template/pulls)
