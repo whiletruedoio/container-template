@@ -12,6 +12,7 @@ This file is the changelog of [REPO_NAME](https://github.com/whiletruedoio/REPO_
 - Added: documentation
 - Added: ci/cd for sanity checks
 - Fixed: linting issues
+- Added: build shield
 
 ## [MAJOR.MINOR.PATCH-LABEL] - YYYYMMDD
 
