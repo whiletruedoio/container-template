@@ -10,7 +10,7 @@ reference: https://commonmark.org/
 
 # Container Template
 
-Templates and examples for new container repositories. 
+Templates and examples for new container repositories.
 
 ## Motivation
 
@@ -32,7 +32,7 @@ orchestration. You will also find the container images in our
 [Docker Hub organization](https://hub.docker.com/u/whiletruedoio). You can find
 more details about the container itself in the README for it.
 
-- [Web Container]()
+- [Web Container](./container/web/)
 
 ### Kubernetes
 
@@ -41,14 +41,13 @@ different Kubernetes deployments and scenarios. All of them can be used on a
 [k3s](https://k3s.io) cluster without any further tuning. The README for each
 deployment will explain how it can be used.
 
-- [Web Deployment]()
+- TBD
+- TBD
 
 ## Contribute
 
 Thank you so much for considering to contribute! We are happy, when someone is
-joining the hard work. Please have a look at the
-[Contributor Conventions](https://github.com/whiletruedoio/.github/blob/main/docs/CONTRIBUTING.md)
-beforehand.
+joining the hard work.
 
 ### Issues
 
@@ -61,16 +60,13 @@ discuss the issue a little, before planning it.
 
 ### Develop
 
-<!-- TODO: Develop
+Providing code to this repository is pretty straight forward. Open an issue,
+so we can discuss the bug/feature and start working on it afterwards. You just
+need to open the pull request afterwards and that's it.
 
-This section describes how one can start to help developing the code.
-
-How to setup the development environment?
-Are there special requirements?
-Do you suggest / recommend something for developers?
-
-Optional: Use and link a docs/DEVELOP.md
--->
+It is also strongly recommended to read the
+[Contribution Guideline](https://github.com/whiletruedoio/.github/blob/main/docs/CONTRIBUTING.md)
+beforehand.
 
 ### Changelog
 
@@ -78,15 +74,10 @@ We are maintaining a [changelog](CHANGELOG.md) for repositories. Normally, the
 developers will update the changelog, according to
 [keepachangelog.com](https://keepachangelog.com/).
 
-<!-- TODO: Changelog
-
-Please update and maintain the CHANGELOG.md
--->
-
 ### Test
 
 To ensure a high quality and functionality, we want to carefully test our
-software. 
+software.
 
 <!-- TODO: Test
 
