@@ -19,4 +19,10 @@ lint_yaml_task:
     image: "docker.io/library/alpine:latest"
   install_script: "apk update && apk add yamllint"
   lint_script: "yamllint ."
+
+lint_dockerfile_task:
+  name: "Lint Dockerfile"
+  container:
+    image: "docker.io/hadolint/hadolint:latest-alpine"
+  lint_script: "hadolint container/web/Containerfile"
 ...

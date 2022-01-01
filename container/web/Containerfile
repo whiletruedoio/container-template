@@ -2,14 +2,12 @@
 # It is also recommended to use a version tag.
 FROM docker.io/library/alpine:3
 
-# Adding a maintainer is recommended. There is a legacy way and the more modern
-# LABEL approach for this.
-MAINTAINER "dschier@while-true-do.io"
-LABEL org.opencontainers.image.authors="dschier@while-true-do.io"
+# Adding a maintainer is recommended.
+LABEL org.opencontainers.image.authors=dschier@while-true-do.io
 
 # Adding content should be done from "less often changing" to "more often
 # changing" to save some time during builds.
-RUN apk add apache2
+RUN apk add --no-cache "apache2>=2"
 
 COPY src /var/www/localhost/htdocs
 
