@@ -66,6 +66,7 @@ devel_docker_builder:
                 --file container/Containerfile
                 container/"
   scan_script: "docker scan
+                --accept-license
                 --file container/Containerfile
                 docker.io/whiletruedoio/template:devel"
   login_script: "docker login
