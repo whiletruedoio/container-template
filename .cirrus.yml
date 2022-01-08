@@ -42,7 +42,7 @@ branch_docker_builder:
     - "Lint Containerfile"
   build_script: "docker image build
                 --tag docker.io/whiletruedoio/template:$CIRRUS_BUILD_ID
-                --file Containerfile
+                --file container/Containerfile
                 container/"
 
 ## Devel images
@@ -54,7 +54,7 @@ devel_docker_builder:
     - "Lint Containerfile"
   build_script: "docker image build
                 --tag docker.io/whiletruedoio/template:devel
-                --file Containerfile
+                --file container/Containerfile
                 container/"
   login_script: "docker login
                 --username $DOCKER_USERNAME
@@ -72,7 +72,7 @@ stable_docker_builder:
   build_script: "docker image build
                 --tag docker.io/whiletruedoio/template:$CIRRUS_TAG
                 --tag docker.io/whiletruedoio/template:latest
-                --file Containerfile
+                --file container/Containerfile
                 container/"
   login_script: "docker login
                 --username $DOCKER_USERNAME
