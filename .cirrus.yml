@@ -28,14 +28,17 @@ lint_containerfile_task:
 
 # Build
 env:
-# yamllint disable-line rule:line-length
+  # yamllint disable-line rule:line-length
   DOCKER_USERNAME: "ENCRYPTED[!f1238a40d68755898657f4c8e7dec33b437663f11856728ba961174636ae1c3ebf83cd07264480614e59a3a19dadb265!]"
-# yamllint disable-line rule:line-length
+  # yamllint disable-line rule:line-length
   DOCKER_PASSWORD: "ENCRYPTED[!04e259668463baaf0512bf7e1fc3b6ea1880ace531578fcb28a74396924f4e2cdc74340b9671549bb47d1761a723f976!]"
 
 ## PRs, Branches
 branch_docker_builder:
-  only_if: "$CIRRUS_BRANCH != $CIRRUS_DEFAULT_BRANCH"
+  name: "Build branch image"
+  only_if: "$CIRRUS_CI == 'true' &&
+            $CIRRUS_BRANCH != $CIRRUS_DEFAULT_BRANCH &&
+            $CIRRUS_REPO_OWNER == 'whiletruedoio'"
   depends_on:
     - "Lint Markdown"
     - "Lint YAML"
@@ -47,7 +50,11 @@ branch_docker_builder:
 
 ## Devel images
 devel_docker_builder:
-  only_if: "$CIRRUS_BRANCH == $CIRRUS_DEFAULT_BRANCH && $CIRRUS_TAG == ''"
+  name: "Build and push devel image"
+  only_if: "$CIRRUS_CI == 'true' &&
+            $CIRRUS_BRANCH == $CIRRUS_DEFAULT_BRANCH &&
+            $CIRRUS_REPO_OWNER == 'whiletruedoio' &&
+            $CIRRUS_TAG == ''"
   depends_on:
     - "Lint Markdown"
     - "Lint YAML"
@@ -64,7 +71,11 @@ devel_docker_builder:
 
 ## Stable images
 stable_docker_builder:
-  only_if: "$CIRRUS_BRANCH == $CIRRUS_DEFAULT_BRANCH && $CIRRUS_TAG != ''"
+  name: "Build and push stable image"
+  only_if: "$CIRRUS_CI == 'true' &&
+            $CIRRUS_BRANCH == $CIRRUS_DEFAULT_BRANCH &&
+            $CIRRUS_REPO_OWNER == 'whiletruedoio' &&
+            $CIRRUS_TAG != ''"
   depends_on:
     - "Lint Markdown"
     - "Lint YAML"

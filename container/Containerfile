@@ -2,8 +2,14 @@
 # It is also recommended to use a version tag.
 FROM docker.io/library/alpine:3
 
-# Adding a maintainer is recommended.
-LABEL org.opencontainers.image.authors=dschier@while-true-do.io
+# Adding some while-true-do.io information
+LABEL io.while-true-do.site="https://while-true-do.io"
+LABEL io.while-true-do.blog="https://blog.while-true-do.io"
+LABEL io.while-true-do.code="https://github.com/whiletruedoio"
+LABEL io.while-true-do.mail="hello@while-true-do.io"
+
+# Adding authors is recommended
+LABEL io.while-true-do.image.authors="dschier@while-true-do.io"
 
 # Adding content should be done from "less often changing" to "more often
 # changing" to save some time during builds.
