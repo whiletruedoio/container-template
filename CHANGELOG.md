@@ -18,6 +18,8 @@ This file is the changelog of
 - Reworked: simplifications to have one template
 - Removed: obsolete READMEs
 - Added: auto build and push
+- Added: push credentials
+- Fixed: Linting and build issues
 
 ## [MAJOR.MINOR.PATCH-LABEL] - YYYYMMDD
 
