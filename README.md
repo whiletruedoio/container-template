@@ -73,10 +73,10 @@ Now you can make changes to the files or just build the image on your own.
 
 ```sh
 # with Podman
-$ podman build -t docker.io/whiletruedoio/template:latest -f container/Containerfile
+$ podman build -t docker.io/whiletruedoio/template:latest -f container/Containerfile container/
 
 # with Docker
-$ docker build -t docker.io/whiletruedoio/template:latest -f container/Containerfile
+$ docker build -t docker.io/whiletruedoio/template:latest -f container/Containerfile container/
 ```
 
 Afterwards, you can run it the same way as described in the above section.
