@@ -35,9 +35,9 @@ env:
 branch_docker_builder:
   only_if: $CIRRUS_BRANCH != $CIRRUS_DEFAULT_BRANCH
   depends_on: 
-    - "lint_markdown"
-    - "lint_yaml"
-    - "lint_containerfile"
+    - "Lint Markdown"
+    - "Lint YAML"
+    - "Lint Containerfile"
   build_script: "docker image build
                  --tag docker.io/whiletruedoio/template:$CIRRUS_BUILD_ID"
 
@@ -45,9 +45,9 @@ branch_docker_builder:
 devel_docker_builder:
   only_if: $CIRRUS_BRANCH == $CIRRUS_DEFAULT_BRANCH && $CIRRUS_TAG == ''
   depends_on: 
-    - "lint_markdown"
-    - "lint_yaml"
-    - "lint_containerfile"
+    - "Lint Markdown"
+    - "Lint YAML"
+    - "Lint Containerfile"
   build_script: "docker image build
                  --tag docker.io/whiletruedoio/template:devel"
   login_script: "docker login
@@ -60,9 +60,9 @@ devel_docker_builder:
 stable_docker_builder:
   only_if: $CIRRUS_BRANCH == $CIRRUS_DEFAULT_BRANCH && $CIRRUS_TAG != ''
   depends_on: 
-    - "lint_markdown"
-    - "lint_yaml"
-    - "lint_containerfile"
+    - "Lint Markdown"
+    - "Lint YAML"
+    - "Lint Containerfile"
   build_script: "docker image build
                  --tag docker.io/whiletruedoio/template:$CIRRUS_TAG
                  --tag docker.io/whiletruedoio/template:latest"
