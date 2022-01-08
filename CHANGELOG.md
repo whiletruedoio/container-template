@@ -4,7 +4,8 @@ reference: https://keepachangelog.com
 
 # Changelog
 
-This file is the changelog of [REPO_NAME](https://github.com/whiletruedoio/REPO_NAME).
+This file is the changelog of
+[container-template](https://github.com/whiletruedoio/container-template).
 
 ## [Unreleased]
 
@@ -13,6 +14,10 @@ This file is the changelog of [REPO_NAME](https://github.com/whiletruedoio/REPO_
 - Added: ci/cd for sanity checks
 - Fixed: linting issues
 - Added: build shield
+- Added: cirrus.yml description
+- Reworked: simplifications to have one template
+- Removed: obsolete READMEs
+- Added: auto build and push
 
 ## [MAJOR.MINOR.PATCH-LABEL] - YYYYMMDD
 

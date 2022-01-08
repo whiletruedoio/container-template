@@ -20,9 +20,55 @@ lint_yaml_task:
   install_script: "apk update && apk add yamllint"
   lint_script: "yamllint ."
 
-lint_dockerfile_task:
-  name: "Lint Dockerfile"
+lint_containerfile_task:
+  name: "Lint Containerfile"
   container:
     image: "docker.io/hadolint/hadolint:latest-alpine"
-  lint_script: "hadolint container/web/Containerfile"
+  lint_script: "hadolint container/Containerfile"
+
+# Build
+env:
+  DOCKER_USERNAME: ENCRYPTED[!f1238a40d68755898657f4c8e7dec33b437663f11856728ba961174636ae1c3ebf83cd07264480614e59a3a19dadb265!]
+  DOCKER_PASSWORD: ENCRYPTED[!04e259668463baaf0512bf7e1fc3b6ea1880ace531578fcb28a74396924f4e2cdc74340b9671549bb47d1761a723f976!]
+
+## PRs, Branches
+branch_docker_builder:
+  only_if: $CIRRUS_BRANCH != $CIRRUS_DEFAULT_BRANCH
+  depends_on: 
+    - "lint_markdown"
+    - "lint_yaml"
+    - "lint_containerfile"
+  build_script: "docker image build
+                 --tag docker.io/whiletruedoio/template:$CIRRUS_BUILD_ID"
+
+## Devel images
+devel_docker_builder:
+  only_if: $CIRRUS_BRANCH == $CIRRUS_DEFAULT_BRANCH && $CIRRUS_TAG == ''
+  depends_on: 
+    - "lint_markdown"
+    - "lint_yaml"
+    - "lint_containerfile"
+  build_script: "docker image build
+                 --tag docker.io/whiletruedoio/template:devel"
+  login_script: "docker login
+                --username $DOCKER_USERNAME
+                --password $DOCKER_PASSWORD"
+  push_script: "docker image push
+                --all-tags docker.io/whiletruedoio/template"
+
+## Stable images
+stable_docker_builder:
+  only_if: $CIRRUS_BRANCH == $CIRRUS_DEFAULT_BRANCH && $CIRRUS_TAG != ''
+  depends_on: 
+    - "lint_markdown"
+    - "lint_yaml"
+    - "lint_containerfile"
+  build_script: "docker image build
+                 --tag docker.io/whiletruedoio/template:$CIRRUS_TAG
+                 --tag docker.io/whiletruedoio/template:latest"
+  login_script: "docker login
+                --username $DOCKER_USERNAME
+                --password $DOCKER_PASSWORD"
+  push_script: "docker image push
+                --all-tags docker.io/whiletruedoio/template"
 ...

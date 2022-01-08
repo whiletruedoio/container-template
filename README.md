@@ -4,6 +4,7 @@ reference: https://commonmark.org/
 -->
 
 [![Cirrus CI - Base Branch Build Status](https://img.shields.io/cirrus/github/whiletruedoio/container-template?logo=Cirrus-ci)](https://cirrus-ci.com/github/whiletruedoio/container-template)
+[![Docker Image Version](https://img.shields.io/docker/v/whiletruedoio/template?logo=Docker&label=Release&sort=semver)](https://hub.docker.com/r/whiletruedoio/template)
 [![GitHub release (latest SemVer)](https://img.shields.io/github/v/release/whiletruedoio/container-template?logo=GitHub&label=Release&sort=semver)](https://github.com/whiletruedoio/container-template/releases)
 [![GitHub issues](https://img.shields.io/github/issues/whiletruedoio/container-template)](https://github.com/whiletruedoio/container-template/issues)
 [![GitHub pull requests](https://img.shields.io/github/issues-pr/whiletruedoio/container-template)](https://github.com/whiletruedoio/container-template/pulls)
@@ -11,7 +12,7 @@ reference: https://commonmark.org/
 
 # Container Template
 
-Templates and examples for new container repositories.
+Template and example for new container repositories.
 
 ## Motivation
 
@@ -23,27 +24,69 @@ providing some pracices on its own and guiding new developers.
 
 The code in this repository is not intended to be used directly. Instead, it
 is providing some common scenarios and examples that may be handy, if one wants
-to develop containers. Below, you can find a list of the provideded examples.
+to develop containers.
 
 ### Container
 
-The container examples can be used with [Docker](https://docker.com),
+The container template can be used with [Docker](https://docker.com),
 [Podman](https://podman.io) or similar container engines and container
 orchestration. You will also find the container images in our
-[Docker Hub organization](https://hub.docker.com/u/whiletruedoio). You can find
-more details about the container itself in the README for it.
+[Docker Hub organization](https://hub.docker.com/u/whiletruedoio/template).
 
-- [Web Container](./container/web/)
+#### Run
+
+You can run the image with a simple command.
+
+```sh
+# with Podman
+$ podman run -dt -p 8080:80 docker.io/whiletruedoio/template:latest
+
+# with Docker
+$ docker run -dt -p 8080:80 docker.io/whiletruedoio/template:latest
+```
+
+Afterwards, you can check if it is running.
+
+```sh
+$ curl localhost:8080
+<!DOCTYPE html>
+
+<h1>Container Template Web</h1>
+<p>Just a simple web container, provided by
+    <a href="https://while-true-do.io">while-true-do.io</a>
+</p>
+```
+#### Build
+
+To build the image on your own, you will need the repository first.
+
+```sh
+# Clone
+$ git clone https://github.com/whiletruedoio/container-template.git
+
+# Change into directory
+$ cd container-template
+```
+
+Now you can make changes to the files or just build the image on your own.
+
+```sh
+# with Podman
+$ podman build -t docker.io/whiletruedoio/template:latest -f container/Containerfile
+
+# with Docker
+$ docker build -t docker.io/whiletruedoio/template:latest -f container/Containerfile
+```
+
+Afterwards, you can run it the same way as described in the above section.
 
 ### Kubernetes
 
-The [Kubernetes](https://kubernetes.io) examples demonstrate the usage of
-different Kubernetes deployments and scenarios. All of them can be used on a
-[k3s](https://k3s.io) cluster without any further tuning. The README for each
-deployment will explain how it can be used.
+The [Kubernetes](https://kubernetes.io) example demonstrates the usage of
+Kubernetes deployments and scenarios. All of them can be used on a
+[k3s](https://k3s.io) cluster without any further tuning.
 
-- TBD
-- TBD
+TODO: kubernetes deployment and documentation
 
 ## Contribute
 
@@ -78,27 +121,13 @@ developers will update the changelog, according to
 ### Test
 
 To ensure a high quality and functionality, we want to carefully test our
-software.
-
-<!-- TODO: Test
-
-Add your guideline, how to test.
-How to execute the tests locally?
-What is automatically done?
-
-Optional: Use and link a docs/TEST.md
-Optional: Provide additional test scripts and helpers in tests/
--->
+software. The provided code is automatically tested as described in the
+[.cirrus.yml](.cirrus.yml).
 
 ## License
 
 Except otherwise noted, all work is [licensed](LICENSE) under a
 [BSD-3-Clause License](https://opensource.org/licenses/BSD-3-Clause).
-
-<!-- TODO: License
-
-Adapt the LICENSE to your needs.
--->
 
 ## Contact
 
