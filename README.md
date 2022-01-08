@@ -39,10 +39,10 @@ You can run the image with a simple command.
 
 ```sh
 # with Podman
-$ podman run -dt -p 8080:80 docker.io/whiletruedoio/template:latest
+$ podman container run -dt -p 8080:80 docker.io/whiletruedoio/template:latest
 
 # with Docker
-$ docker run -dt -p 8080:80 docker.io/whiletruedoio/template:latest
+$ docker container run -dt -p 8080:80 docker.io/whiletruedoio/template:latest
 ```
 
 Afterwards, you can check if it is running.
@@ -73,10 +73,16 @@ Now you can make changes to the files or just build the image on your own.
 
 ```sh
 # with Podman
-$ podman build -t docker.io/whiletruedoio/template:latest -f container/Containerfile container/
+$ podman image build \
+    -t docker.io/whiletruedoio/template:latest \
+    -f container/Containerfile \
+    container/
 
 # with Docker
-$ docker build -t docker.io/whiletruedoio/template:latest -f container/Containerfile container/
+$ docker image build \
+    -t docker.io/whiletruedoio/template:latest \
+    -f container/Containerfile \
+    container/
 ```
 
 Afterwards, you can run it the same way as described in the above section.
