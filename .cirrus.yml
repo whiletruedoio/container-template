@@ -59,16 +59,10 @@ devel_docker_builder:
     - "Lint Markdown"
     - "Lint YAML"
     - "Lint Containerfile"
-  install_script: "apt-get update &&
-                  apt-get install -y docker-scan-plugin"
   build_script: "docker image build
                 --tag docker.io/whiletruedoio/template:devel
                 --file container/Containerfile
                 container/"
-  scan_script: "docker scan
-                --accept-license
-                --file container/Containerfile
-                docker.io/whiletruedoio/template:devel"
   login_script: "docker login
                 --username $DOCKER_USERNAME
                 --password $DOCKER_PASSWORD"
