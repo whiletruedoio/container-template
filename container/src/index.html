@@ -1,6 +1,80 @@
 <!DOCTYPE html>
+<html>
+<head>
+    <!-- meta -->
+    <meta charset="utf-8" />
+    <meta http-equiv="x-ua-compatible" content="ie=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="HandheldFriendly" content="True" />
 
-<h1>Container Template Web</h1>
-<p>Just a simple web container, provided by
-    <a href="https://while-true-do.io">while-true-do.io</a>
-</p>
+    <!-- identity -->
+    <title>while-true-do.io - Container Template</title>
+    <meta name="description" content="Demonstration of container builds." />
+    <meta name="keywords" content="container, template, Docker, Podman" />
+    <meta name="author" content="hello@while-true-do.io" />
+
+    <!-- icons -->
+    <link rel="apple-touch-icon" href="img/logo" />
+    <link rel="shortcut icon" href="img/logo" />
+
+    <!-- styling -->
+    <link rel="stylesheet" href="css/main.css" />
+</head>
+<body>
+
+    <header id="header" class="primary">
+        <div class="container center">
+            <h1><a href="https://while-true-do.io">while-true-do.io</a> Container Template</h1>
+            <p>Demonstration of container builds.</p>
+        </div>
+    </header>
+
+    <main id="main">
+        <section id="section">
+            <div class="container">
+                <h2>Container Info</h2>
+                <!-- BEGIN_CONTAINER_TEMPLATE_CONTENT -->
+                <!-- ENDOF_CONTAINER_TEMPLATE_CONTENT -->
+            </div>
+        </section>
+        <section id="section">
+            <div class="container">
+                <h2>Motivation</h2>
+                <p>Starting with containers can be intense and working towards
+                    best-practices is often taking a lot of time. This learning can
+                    be a lot easier, if a project is providing some pracices on its
+                    own and guiding new developers.
+                </p>
+            </div>
+        </section>
+        <section id="section">
+            <div class="container">
+                <h2>Pipeline</h2>
+                <p>The below graphic demonstrates, how the container template is
+                    intended to be built and pushed to the audience.
+                </p>
+                <img src="img/pipeline.png">
+            </div>
+        </section>
+        <section id="section">
+            <div class="container">
+                <h2>Documentation</h2>
+                <p>In case, you want to learn about the template a bit more or even
+                    improve it, please check the below links.
+                </p>
+                <ul>
+                    <li><a href="https://github.com/whiletruedoio/container-template">Code</a></li>
+                    <li><a href="https://github.com/whiletruedoio/container-template">Docs</a></li>
+                </ul>
+            </div>
+        </section>
+    </main>
+
+    <footer id="footer" class="primary">
+        <div class="container center">
+            <p>maybe links to the repository, website and docs</p>
+        </div>
+    </footer>
+
+</body>
+</html>
