@@ -38,7 +38,8 @@ branch_docker_builder:
   name: "Build branch image"
   only_if: "$CIRRUS_CI == 'true' &&
             $CIRRUS_BRANCH != $CIRRUS_DEFAULT_BRANCH &&
-            $CIRRUS_REPO_OWNER == 'whiletruedoio'"
+            $CIRRUS_REPO_OWNER == 'whiletruedoio' &&
+            $CIRRUS_TAG == ''"
   depends_on:
     - "Lint Markdown"
     - "Lint YAML"
@@ -75,7 +76,7 @@ devel_docker_builder:
 stable_docker_builder:
   name: "Build and push stable image"
   only_if: "$CIRRUS_CI == 'true' &&
-            $CIRRUS_BRANCH == $CIRRUS_DEFAULT_BRANCH &&
+            $CIRRUS_BRANCH != $CIRRUS_DEFAULT_BRANCH &&
             $CIRRUS_REPO_OWNER == 'whiletruedoio' &&
             $CIRRUS_TAG != ''"
   depends_on:
