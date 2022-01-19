@@ -9,6 +9,8 @@ This file is the changelog of
 
 ## [Unreleased]
 
+## [0.5.0-alpha] - 20220119
+
 - Added: web container
 - Added: documentation
 - Added: ci/cd for sanity checks
@@ -20,6 +22,7 @@ This file is the changelog of
 - Added: auto build and push
 - Added: push credentials
 - Fixed: Linting and build issues
+- Updated: website
 
 ## [MAJOR.MINOR.PATCH-LABEL] - YYYYMMDD
 
