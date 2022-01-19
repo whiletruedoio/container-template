@@ -15,8 +15,8 @@ LABEL io.while-true-do.image.authors="dschier@while-true-do.io"
 # changing" to save some time during builds.
 RUN apk add --no-cache "apache2>=2" "bash>=5"
 
-COPY src/bin/ /usr/local/bin/
-COPY src/html/ /var/www/localhost/htdocs/
+COPY src/bin /usr/local/bin/
+COPY src/html /var/www/localhost/htdocs/
 
 RUN chmod +x /usr/local/bin/entrypoint.sh
 

@@ -60,11 +60,11 @@ devel_docker_builder:
     - "Lint YAML"
     - "Lint Containerfile"
   debug_script: "docker info"
-  list_script: "ls -la"
+  list_script: "ls -la container/"
   build_script: "docker image build
                 --tag docker.io/whiletruedoio/template:devel
                 --file container/Containerfile
-                container"
+                container/"
   login_script: "docker login
                 --username $DOCKER_USERNAME
                 --password $DOCKER_PASSWORD"
@@ -86,7 +86,7 @@ stable_docker_builder:
                 --tag docker.io/whiletruedoio/template:$CIRRUS_TAG
                 --tag docker.io/whiletruedoio/template:latest
                 --file container/Containerfile
-                container"
+                container/"
   login_script: "docker login
                 --username $DOCKER_USERNAME
                 --password $DOCKER_PASSWORD"
