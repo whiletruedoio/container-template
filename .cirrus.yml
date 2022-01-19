@@ -43,6 +43,7 @@ branch_docker_builder:
     - "Lint Markdown"
     - "Lint YAML"
     - "Lint Containerfile"
+  info_script: "docker info"
   build_script: "docker image build
                 --tag docker.io/whiletruedoio/template:$CIRRUS_BUILD_ID
                 --file container/Containerfile
@@ -59,8 +60,7 @@ devel_docker_builder:
     - "Lint Markdown"
     - "Lint YAML"
     - "Lint Containerfile"
-  debug_script: "docker info"
-  list_script: "ls -la container/"
+  info_script: "docker info"
   build_script: "docker image build
                 --tag docker.io/whiletruedoio/template:devel
                 --file container/Containerfile
@@ -82,6 +82,7 @@ stable_docker_builder:
     - "Lint Markdown"
     - "Lint YAML"
     - "Lint Containerfile"
+  info_script: "docker info"
   build_script: "docker image build
                 --tag docker.io/whiletruedoio/template:$CIRRUS_TAG
                 --tag docker.io/whiletruedoio/template:latest

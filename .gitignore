@@ -4,7 +4,6 @@
 *.retry
 
 # compiled source
-bin/
 *.com
 *.class
 *.dll
