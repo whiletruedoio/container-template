@@ -13,15 +13,18 @@ LABEL io.while-true-do.image.authors="dschier@while-true-do.io"
 
 # Adding content should be done from "less often changing" to "more often
 # changing" to save some time during builds.
-RUN apk add --no-cache "apache2>=2"
+RUN apk add --no-cache "apache2>=2" "bash>=5"
 
-COPY src /var/www/localhost/htdocs
+COPY src/bin /usr/local/bin/
+COPY src/html /var/www/localhost/htdocs
+
+RUN chmod +x /usr/local/bin/entrypoint.sh
 
 # It is recommended to specify exposed ports, so container engines can detect
 # these. It is not needed, though.
 EXPOSE 80
 
 # It is recommended to use the ENTRYPOINT statement for containers, but also
-# needs some additional scripting. For simple examples, the CMD statement is
-# fine.
-CMD ["/usr/sbin/httpd","-DFOREGROUND"]
+# needs some additional scripting. For simple container images the CMD statement
+# is fine.
+ENTRYPOINT ["/usr/local/bin/entrypoint.sh"]

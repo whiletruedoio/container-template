@@ -27,17 +27,33 @@
             <h1><a href="https://while-true-do.io">while-true-do.io</a> Container Template</h1>
             <p>Demonstration of container builds.</p>
         </div>
+        <br>
     </header>
 
     <main id="main">
-        <section id="section">
-            <div class="container">
-                <h2>Container Info</h2>
-                <!-- BEGIN_CONTAINER_TEMPLATE_CONTENT -->
-                <!-- ENDOF_CONTAINER_TEMPLATE_CONTENT -->
+        <section class="section" id="repository">
+            <div class="container center">
+                <img alt="Docker Stars" src="https://img.shields.io/docker/stars/whiletruedoio/template?style=for-the-badge">
+                <img alt="Docker Pulls" src="https://img.shields.io/docker/pulls/whiletruedoio/template?style=for-the-badge">
+                <img alt="GitHub issues" src="https://img.shields.io/github/issues/whiletruedoio/container-template?style=for-the-badge">
+                <img alt="GitHub" src="https://img.shields.io/github/license/whiletruedoio/container-template?style=for-the-badge">
             </div>
         </section>
-        <section id="section">
+
+        <section class="section" id="container">
+            <div class="container">
+                <h2>Container Information</h2>
+                <ul>
+                    <li>Container Hostname:</li>
+                </ul>
+                <ul>
+                    <li>Host Kernel:</li>
+                    <li>Host Runtime:</li>
+                </ul>
+            </div>
+        </section>
+
+        <section class="section" id="motivation">
             <div class="container">
                 <h2>Motivation</h2>
                 <p>Starting with containers can be intense and working towards
@@ -47,16 +63,18 @@
                 </p>
             </div>
         </section>
-        <section id="section">
+
+        <section class="section" id="pipeline">
             <div class="container">
                 <h2>Pipeline</h2>
                 <p>The below graphic demonstrates, how the container template is
                     intended to be built and pushed to the audience.
                 </p>
-                <img src="img/pipeline.png">
+                <img class="responsive" src="img/pipeline.png">
             </div>
         </section>
-        <section id="section">
+
+        <section class="section" id="documentation">
             <div class="container">
                 <h2>Documentation</h2>
                 <p>In case, you want to learn about the template a bit more or even
@@ -72,7 +90,7 @@
 
     <footer id="footer" class="primary">
         <div class="container center">
-            <p>maybe links to the repository, website and docs</p>
+            <p>This is the end. :) </p>
         </div>
     </footer>
 
