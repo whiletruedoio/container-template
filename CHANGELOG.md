@@ -9,8 +9,6 @@ This file is the changelog of
 
 ## [Unreleased]
 
-## [0.5.0-alpha] - 20220119
-
 - Added: web container
 - Added: documentation
 - Added: ci/cd for sanity checks
