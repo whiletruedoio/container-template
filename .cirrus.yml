@@ -90,9 +90,10 @@ push_docker_builder:
   depends_on:
     - "Test Image"
 
-  login_script: "docker login docker.io
+  login_script: "docker login
                 --username $DOCKER_USER_NAME
-                --password $DOCKER_PASSWORD"
+                --password $DOCKER_PASSWORD
+                docker.io"
 
   info_script: "docker info"
 
