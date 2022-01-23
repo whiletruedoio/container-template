@@ -21,6 +21,10 @@ This file is the changelog of
 - Added: push credentials
 - Fixed: Linting and build issues
 - Updated: website
+- Updated: entrypoint script
+- Changed: Containerfile to Dockerfile
+- Added: Security scanning with trivy
+- Changed: cirrus-ci flow to push tagged builds
 
 ## [MAJOR.MINOR.PATCH-LABEL] - YYYYMMDD
 

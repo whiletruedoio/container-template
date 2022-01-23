@@ -15,6 +15,7 @@ LABEL io.while-true-do.image.authors="dschier@while-true-do.io"
 # changing" to save some time during builds.
 RUN apk add --no-cache "apache2>=2" "bash>=5"
 
+# It is recommended to adjust the file owners and permissions properly.
 COPY src/bin /usr/local/bin/
 COPY src/html /var/www/localhost/htdocs/
 
@@ -24,7 +25,11 @@ RUN chmod +x /usr/local/bin/entrypoint.sh
 # these. It is not needed, though.
 EXPOSE 80
 
+# If the command in the container can run without root, it is recommended to
+# specify the user for the container. This is known to be more secure.
+#USER apache
+
 # It is recommended to use the ENTRYPOINT statement for containers, but also
 # needs some additional scripting. For simple container images the CMD statement
 # is fine.
-ENTRYPOINT ["/usr/local/bin/entrypoint.sh"]
+ENTRYPOINT ["/usr/bin/env","bash","/usr/local/bin/entrypoint.sh"]

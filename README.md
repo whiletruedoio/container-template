@@ -45,16 +45,24 @@ $ podman container run -dt -p 8080:80 docker.io/whiletruedoio/template:latest
 $ docker container run -dt -p 8080:80 docker.io/whiletruedoio/template:latest
 ```
 
-Afterwards, you can check if it is running.
+Afterwards, you can check the website content via CLI or in your browser,
+pointing to <http://localhost:8080>.
 
 ```sh
+# Check via curl
 $ curl localhost:8080
 <!DOCTYPE html>
+<html>
+<head>
+    <!-- meta -->
+    <meta charset="utf-8" />
 
-<h1>Container Template Web</h1>
-<p>Just a simple web container, provided by
-    <a href="https://while-true-do.io">while-true-do.io</a>
-</p>
+...SNIP...
+
+    </footer>
+
+</body>
+</html>
 ```
 
 #### Build
@@ -74,15 +82,11 @@ Now you can make changes to the files or just build the image on your own.
 ```sh
 # with Podman
 $ podman image build \
-    -t docker.io/whiletruedoio/template:latest \
-    -f container/Containerfile \
-    container/
+    --tag docker.io/whiletruedoio/template:latest container/
 
 # with Docker
 $ docker image build \
-    -t docker.io/whiletruedoio/template:latest \
-    -f container/Containerfile \
-    container/
+    --tag docker.io/whiletruedoio/template:latest container/
 ```
 
 Afterwards, you can run it the same way as described in the above section.

@@ -9,89 +9,100 @@ container:
 lint_markdown_task:
   name: "Lint Markdown"
   container:
-    image: "docker.io/library/node:latest"
+    image: "docker.io/library/node:current-alpine"
   install_script: "npm install -g markdownlint-cli"
-  lint_script: "markdownlint *.md docs/*.md"
+  test_script: "markdownlint *.md docs/*.md"
 
 lint_yaml_task:
   name: "Lint YAML"
   container:
-    image: "docker.io/library/alpine:latest"
-  install_script: "apk update && apk add yamllint"
-  lint_script: "yamllint ."
+    image: "docker.io/library/alpine:3"
+  install_script: "apk add --no-cache yamllint"
+  test_script: "yamllint ."
 
 lint_containerfile_task:
   name: "Lint Containerfile"
   container:
     image: "docker.io/hadolint/hadolint:latest-alpine"
-  lint_script: "hadolint container/Containerfile"
+  test_script: "hadolint container/Dockerfile"
+
+scan_containerfile_task:
+  name: "Scan Containerfile"
+  container:
+    image: "docker.io/aquasec/trivy:0.22.0"
+  scan_script: "trivy config
+                --severity CRITICAL
+                --exit-code 1
+                container/"
 
 # Build
 env:
+  DOCKER_HUB_IMAGE: "docker.io/whiletruedoio/template"
   # yamllint disable-line rule:line-length
   DOCKER_USERNAME: "ENCRYPTED[!f1238a40d68755898657f4c8e7dec33b437663f11856728ba961174636ae1c3ebf83cd07264480614e59a3a19dadb265!]"
   # yamllint disable-line rule:line-length
   DOCKER_PASSWORD: "ENCRYPTED[!04e259668463baaf0512bf7e1fc3b6ea1880ace531578fcb28a74396924f4e2cdc74340b9671549bb47d1761a723f976!]"
 
-## PRs, Branches
-branch_docker_builder:
-  name: "Build branch image"
-  only_if: "$CIRRUS_CI == 'true' &&
-            $CIRRUS_BRANCH != $CIRRUS_DEFAULT_BRANCH &&
-            $CIRRUS_REPO_OWNER == 'whiletruedoio' &&
-            $CIRRUS_TAG == ''"
+# This will always run
+test_docker_builder:
+  name: "Test Image"
   depends_on:
     - "Lint Markdown"
     - "Lint YAML"
     - "Lint Containerfile"
+
   info_script: "docker info"
+
   build_script: "docker image build
-                --tag docker.io/whiletruedoio/template:$CIRRUS_BUILD_ID
-                --file container/Containerfile
+                --cache-from $DOCKER_HUB_IMAGE:latest
+                --tag $DOCKER_HUB_IMAGE:$CIRRUS_CHANGE_IN_REPO
                 container/"
 
-## Devel images
-devel_docker_builder:
-  name: "Build and push devel image"
-  only_if: "$CIRRUS_CI == 'true' &&
-            $CIRRUS_BRANCH == $CIRRUS_DEFAULT_BRANCH &&
-            $CIRRUS_REPO_OWNER == 'whiletruedoio' &&
-            $CIRRUS_TAG == ''"
-  depends_on:
-    - "Lint Markdown"
-    - "Lint YAML"
-    - "Lint Containerfile"
-  info_script: "docker info"
-  build_script: "docker image build
-                --tag docker.io/whiletruedoio/template:devel
-                --file container/Containerfile
-                container/"
-  login_script: "docker login
-                --username $DOCKER_USERNAME
-                --password $DOCKER_PASSWORD"
-  push_script: "docker image push
-                --all-tags docker.io/whiletruedoio/template"
+  functional_test_script:
+    - "docker network create CINET || true"
+    - "docker container run
+      --detach
+      --replace
+      --name $CIRRUS_CHANGE_IN_REPO
+      --network CINET
+      $DOCKER_HUB_IMAGE:$CIRRUS_CHANGE_IN_REPO"
+    - "docker ps | grep $CIRRUS_CHANGE_IN_REPO"
+    - "docker container run
+      --rm
+      --network CINET
+      docker.io/library/alpine:3
+      wget http://$CIRRUS_CHANGE_IN_REPO"
 
-## Stable images
-stable_docker_builder:
-  name: "Build and push stable image"
-  only_if: "$CIRRUS_CI == 'true' &&
-            $CIRRUS_BRANCH != $CIRRUS_DEFAULT_BRANCH &&
-            $CIRRUS_REPO_OWNER == 'whiletruedoio' &&
+  security_scan_script:
+    - "wget https://github.com/aquasecurity/trivy/releases/download/\
+      v0.22.0/trivy_0.22.0_Linux-64bit.tar.gz"
+    - "tar -zxvf trivy_0.22.0_Linux-64bit.tar.gz"
+    - "./trivy image
+      --severity CRITICAL
+      --exit-code 1
+      $DOCKER_HUB_IMAGE:$CIRRUS_CHANGE_IN_REPO"
+
+# Deliver
+push_docker_builder:
+  name: "Deliver Image"
+  only_if: "$CIRRUS_BASE_BRANCH == '' &&
             $CIRRUS_TAG != ''"
+
   depends_on:
-    - "Lint Markdown"
-    - "Lint YAML"
-    - "Lint Containerfile"
-  info_script: "docker info"
-  build_script: "docker image build
-                --tag docker.io/whiletruedoio/template:$CIRRUS_TAG
-                --tag docker.io/whiletruedoio/template:latest
-                --file container/Containerfile
-                container/"
+    - "Test Image"
+
   login_script: "docker login
-                --username $DOCKER_USERNAME
+                --username $DOCKER_USER_NAME
                 --password $DOCKER_PASSWORD"
+
+  info_script: "docker info"
+
+  build_script: "docker image build
+                --cache-from $DOCKER_HUB_IMAGE:latest
+                --tag $DOCKER_HUB_IMAGE:latest
+                --tag $DOCKER_HUB_IMAGE:$CIRRUS_TAG
+                container/"
+
   push_script: "docker image push
-                --all-tags docker.io/whiletruedoio/template"
-...
+                --all-tags
+                $DOCKER_HUB_IMAGE"
