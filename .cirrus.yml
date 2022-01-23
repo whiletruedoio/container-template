@@ -91,7 +91,7 @@ push_docker_builder:
     - "Test Image"
 
   login_script: "docker login
-                --username $DOCKER_USER_NAME
+                --username $DOCKER_USERNAME
                 --password $DOCKER_PASSWORD
                 docker.io"
 
