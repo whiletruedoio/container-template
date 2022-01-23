@@ -62,7 +62,6 @@ test_docker_builder:
     - "docker network create CINET || true"
     - "docker container run
       --detach
-      --replace
       --name $CIRRUS_CHANGE_IN_REPO
       --network CINET
       $DOCKER_HUB_IMAGE:$CIRRUS_CHANGE_IN_REPO"
