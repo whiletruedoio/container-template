@@ -42,6 +42,7 @@ lint_containerfile_task:
 
 scan_containerfile_task:
   name: "Scan Containerfile"
+  only_if: "$CIRRUS_ENVIRONMENT != 'CLI'"
   container:
     image: "docker.io/aquasec/trivy:0.22.0"
   scan_script: "trivy config
@@ -63,7 +64,10 @@ test_docker_builder:
   depends_on:
     - "Lint Markdown"
     - "Lint YAML"
+    - "Lint CSS"
+    - "Lint HTML"
     - "Lint Containerfile"
+    - "Scan Containerfile"
 
   info_script: "docker info"
 
@@ -73,18 +77,20 @@ test_docker_builder:
                 container/"
 
   functional_test_script:
-    - "docker network create CINET || true"
+    - "docker network create NET-$CIRRUS_CHANGE_IN_REPO"
     - "docker container run
       --detach
-      --name $CIRRUS_CHANGE_IN_REPO
-      --network CINET
+      --name CTR-$CIRRUS_CHANGE_IN_REPO
+      --network NET-$CIRRUS_CHANGE_IN_REPO
       $DOCKER_HUB_IMAGE:$CIRRUS_CHANGE_IN_REPO"
-    - "docker ps | grep $CIRRUS_CHANGE_IN_REPO"
+    - "docker ps | grep CTR-$CIRRUS_CHANGE_IN_REPO"
     - "docker container run
       --rm
-      --network CINET
+      --network NET-$CIRRUS_CHANGE_IN_REPO
       docker.io/library/alpine:3
-      wget http://$CIRRUS_CHANGE_IN_REPO"
+      wget http://CTR-$CIRRUS_CHANGE_IN_REPO"
+    - "docker container stop CTR-$CIRRUS_CHANGE_IN_REPO"
+    - "docker network rm -f NET-$CIRRUS_CHANGE_IN_REPO"
 
   security_test_script:
     - "wget https://github.com/aquasecurity/trivy/releases/download/\
@@ -100,17 +106,18 @@ test_docker_builder:
 devel_docker_builder:
   name: "Deliver Devel Image"
   only_if: "$CIRRUS_BRANCH == $CIRRUS_DEFAULT_BRANCH &&
-            $CIRRUS_TAG == ''"
+            $CIRRUS_TAG == '' &&
+            $CIRRUS_ENVIRONMENT != 'CLI'"
 
   depends_on:
     - "Test Image"
+
+  info_script: "docker info"
 
   login_script: "docker login
                 --username $DOCKER_USERNAME
                 --password $DOCKER_PASSWORD
                 docker.io"
-
-  info_script: "docker info"
 
   build_script: "docker image build
                 --cache-from $DOCKER_HUB_IMAGE:latest
@@ -124,17 +131,18 @@ devel_docker_builder:
 stable_docker_builder:
   name: "Deliver Stable Image"
   only_if: "$CIRRUS_BRANCH == $CIRRUS_DEFAULT_BRANCH &&
-            $CIRRUS_TAG != ''"
+            $CIRRUS_TAG != '' &&
+            $CIRRUS_ENVIRONMENT != 'CLI'"
 
   depends_on:
     - "Test Image"
+
+  info_script: "docker info"
 
   login_script: "docker login
                 --username $DOCKER_USERNAME
                 --password $DOCKER_PASSWORD
                 docker.io"
-
-  info_script: "docker info"
 
   build_script: "docker image build
                 --cache-from $DOCKER_HUB_IMAGE:latest

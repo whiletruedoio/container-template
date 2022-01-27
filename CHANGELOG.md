@@ -29,6 +29,8 @@ This file is the changelog of
 - Changed: updated credentials for docker-hub
 - Added: CSS linter
 - Added: HTML linter
+- Updated: CI dependencies for new tests added
+- Updated: CI and CLI behavior now different
 
 ## [MAJOR.MINOR.PATCH-LABEL] - YYYYMMDD
 
