@@ -20,6 +20,13 @@ lint_yaml_task:
   install_script: "apk add --no-cache yamllint"
   test_script: "yamllint ."
 
+lint_css_task:
+  name: "Lint CSS"
+  container:
+    image: "docker.io/library/node:current-alpine"
+  install_script: "npm install -g stylelint stylelint-config-standard"
+  test_script: 'npx stylelint "**/*.css"'
+
 lint_containerfile_task:
   name: "Lint Containerfile"
   container:
