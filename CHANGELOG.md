@@ -26,6 +26,7 @@ This file is the changelog of
 - Added: Security scanning with trivy
 - Changed: cirrus-ci flow to push tagged builds
 - Changed: cirrus-ci flow to push based on tags and branch
+- Changed: updated credentials for docker-hub
 
 ## [MAJOR.MINOR.PATCH-LABEL] - YYYYMMDD
 

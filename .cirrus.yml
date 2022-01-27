@@ -41,7 +41,7 @@ env:
   # yamllint disable-line rule:line-length
   DOCKER_USERNAME: "ENCRYPTED[!f1238a40d68755898657f4c8e7dec33b437663f11856728ba961174636ae1c3ebf83cd07264480614e59a3a19dadb265!]"
   # yamllint disable-line rule:line-length
-  DOCKER_PASSWORD: "ENCRYPTED[!04e259668463baaf0512bf7e1fc3b6ea1880ace531578fcb28a74396924f4e2cdc74340b9671549bb47d1761a723f976!]"
+  DOCKER_PASSWORD: "ENCRYPTED[!ba694a81b388c14ab792c378a7f32a36e3d216a393c4b67dcc7e3eadf76d7ec24d9b9ffe7c4cde7cea4abcd4b655e959!]"
 
 # This will always run
 test_docker_builder:
