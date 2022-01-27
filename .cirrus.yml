@@ -80,6 +80,7 @@ test_docker_builder:
     - "docker network create NET-$CIRRUS_CHANGE_IN_REPO"
     - "docker container run
       --detach
+      --rm
       --name CTR-$CIRRUS_CHANGE_IN_REPO
       --network NET-$CIRRUS_CHANGE_IN_REPO
       $DOCKER_HUB_IMAGE:$CIRRUS_CHANGE_IN_REPO"
