@@ -72,7 +72,7 @@ test_docker_builder:
       docker.io/library/alpine:3
       wget http://$CIRRUS_CHANGE_IN_REPO"
 
-  security_scan_script:
+  security_test_script:
     - "wget https://github.com/aquasecurity/trivy/releases/download/\
       v0.22.0/trivy_0.22.0_Linux-64bit.tar.gz"
     - "tar -zxvf trivy_0.22.0_Linux-64bit.tar.gz"
@@ -82,9 +82,34 @@ test_docker_builder:
       $DOCKER_HUB_IMAGE:$CIRRUS_CHANGE_IN_REPO"
 
 # Deliver
-push_docker_builder:
+
+devel_docker_builder:
   name: "Deliver Image"
-  only_if: "$CIRRUS_BASE_BRANCH == '' &&
+  only_if: "$CIRRUS_BRANCH == $CIRRUS_DEFAULT_BRANCH &&
+            $CIRRUS_TAG == ''"
+
+  depends_on:
+    - "Test Image"
+
+  login_script: "docker login
+                --username $DOCKER_USERNAME
+                --password $DOCKER_PASSWORD
+                docker.io"
+
+  info_script: "docker info"
+
+  build_script: "docker image build
+                --cache-from $DOCKER_HUB_IMAGE:latest
+                --tag $DOCKER_HUB_IMAGE:devel
+                container/"
+
+  push_script: "docker image push
+                --all-tags
+                $DOCKER_HUB_IMAGE"
+
+stable_docker_builder:
+  name: "Deliver Image"
+  only_if: "$CIRRUS_BRANCH == $CIRRUS_DEFAULT_BRANCH &&
             $CIRRUS_TAG != ''"
 
   depends_on:

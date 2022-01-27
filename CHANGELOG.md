@@ -25,6 +25,7 @@ This file is the changelog of
 - Changed: Containerfile to Dockerfile
 - Added: Security scanning with trivy
 - Changed: cirrus-ci flow to push tagged builds
+- Changed: cirrus-ci flow to push based on tags and branch
 
 ## [MAJOR.MINOR.PATCH-LABEL] - YYYYMMDD
 
