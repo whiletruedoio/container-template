@@ -84,7 +84,7 @@ test_docker_builder:
 # Deliver
 
 devel_docker_builder:
-  name: "Deliver Image"
+  name: "Deliver Devel Image"
   only_if: "$CIRRUS_BRANCH == $CIRRUS_DEFAULT_BRANCH &&
             $CIRRUS_TAG == ''"
 
@@ -108,7 +108,7 @@ devel_docker_builder:
                 $DOCKER_HUB_IMAGE"
 
 stable_docker_builder:
-  name: "Deliver Image"
+  name: "Deliver Stable Image"
   only_if: "$CIRRUS_BRANCH == $CIRRUS_DEFAULT_BRANCH &&
             $CIRRUS_TAG != ''"
 
