@@ -90,7 +90,7 @@ test_docker_builder:
       docker.io/library/alpine:3
       wget http://CTR-$CIRRUS_CHANGE_IN_REPO"
     - "docker container stop CTR-$CIRRUS_CHANGE_IN_REPO"
-    - "docker network rm -f NET-$CIRRUS_CHANGE_IN_REPO"
+    - "docker network rm NET-$CIRRUS_CHANGE_IN_REPO"
 
   security_test_script:
     - "wget https://github.com/aquasecurity/trivy/releases/download/\
