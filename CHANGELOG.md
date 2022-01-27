@@ -27,6 +27,8 @@ This file is the changelog of
 - Changed: cirrus-ci flow to push tagged builds
 - Changed: cirrus-ci flow to push based on tags and branch
 - Changed: updated credentials for docker-hub
+- Added: CSS linter
+- Added: HTML linter
 
 ## [MAJOR.MINOR.PATCH-LABEL] - YYYYMMDD
 

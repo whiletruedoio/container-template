@@ -25,7 +25,14 @@ lint_css_task:
   container:
     image: "docker.io/library/node:current-alpine"
   install_script: "npm install -g stylelint stylelint-config-standard"
-  test_script: 'npx stylelint "**/*.css"'
+  test_script: "npx stylelint 'container/src/**/*.css'"
+
+lint_html_task:
+  name: "Lint HTML"
+  container:
+    image: "docker.io/library/node:current-alpine"
+  install_script: "npm install @linthtml/linthtml"
+  test_script: "npx linthtml 'container/src/**/*.html'"
 
 lint_containerfile_task:
   name: "Lint Containerfile"
