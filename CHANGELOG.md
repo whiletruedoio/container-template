@@ -9,31 +9,17 @@ This file is the changelog of
 
 ## [Unreleased]
 
-- Added: web container
-- Added: documentation
-- Added: ci/cd for sanity checks
-- Fixed: linting issues
-- Added: build shield
-- Added: cirrus.yml description
-- Reworked: simplifications to have one template
-- Removed: obsolete READMEs
-- Added: auto build and push
-- Added: push credentials
-- Fixed: Linting and build issues
-- Updated: website
-- Updated: entrypoint script
-- Changed: Containerfile to Dockerfile
-- Added: Security scanning with trivy
-- Changed: cirrus-ci flow to push tagged builds
-- Changed: cirrus-ci flow to push based on tags and branch
-- Changed: updated credentials for docker-hub
-- Added: CSS linter
-- Added: HTML linter
-- Updated: CI dependencies for new tests added
-- Updated: CI and CLI behavior now different
-- Added: Cleanup for functional test container
-- Added: kubernetes deployment example
-- Added: kubernetes tests and scans
+## [0.9.0] - 20220205
+
+This marks the initial release.
+
+- Added: container build and run template
+- Added: Kubernetes run template
+- Added: ci for sanity checks
+- Added: ci for security checks
+- Added: ci for functional checks
+- Added: cd for delivering the image to docker-hub
+- Added: documentation and guidance
 
 ## [MAJOR.MINOR.PATCH-LABEL] - YYYYMMDD
 
