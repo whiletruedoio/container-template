@@ -33,7 +33,7 @@ The container template can be used with [Docker](https://docker.com),
 orchestration. You will also find the container images in our
 [Docker Hub organization](https://hub.docker.com/u/whiletruedoio/template).
 
-#### Run
+#### Run Container
 
 You can run the image with a simple command.
 
@@ -65,7 +65,7 @@ $ curl localhost:8080
 </html>
 ```
 
-#### Build
+#### Build Image
 
 To build the image on your own, you will need the repository first.
 
@@ -97,7 +97,74 @@ The [Kubernetes](https://kubernetes.io) example demonstrates the usage of
 Kubernetes deployments and scenarios. All of them can be used on a
 [k3s](https://k3s.io) cluster without any further tuning.
 
-TODO: kubernetes deployment and documentation
+#### Requirements
+
+You need to have access to a Kubernetes instance like [k3s](https://k3s.io) or
+[minikube](https://minikube.sigs.k8s.io/docs/) to test the deployment. You can
+find some more detailed instructions in the
+[tooling repository](https://github.com/whiletruedoio/tooling/)
+or in the upstream documentation.
+
+Be aware, that you need to have a proper ingress controller deployed. For k3s,
+this is done automatically (Traefik) and for minikube you need to perform
+`minikube addons enable ingress`, which will deploy the nginx ingress
+controller.
+
+#### Run Deployment
+
+The [Kubernetes example](./kubernetes) provides several files, that can be used
+to deploy the template container (docker.io/whiletruedoio/template:latest). The
+example provides the below files:
+
+- namespace.yml to create a namespace
+- development.yml to create the development and its pods and containers
+- service.yml to create a service, pointing to the deployment pods
+- ingress.yml to create an ingress for the service
+
+After deploying these files, you will end up with a namespace (template), like
+represented in the below diagram.
+
+![template namespace](./assets/kubernetes.drawio.png)
+
+You can deploy these files with the below commands:
+
+```shell
+# Create namespace
+$ kubectl apply -f kubernetes/namespace.yml
+
+# Create everything else
+$ kubectl apply -f kubernetes/
+```
+
+Afterwards, you can check the deployment, services and ingress.
+
+```shell
+# Check pods
+$ kubectl get pods -n template
+# Check service
+$ kubectl get services -n template
+# Check ingress
+$ kubectl get ingress -n template
+```
+
+If you want to see the deployment in action, you need to perform some additional
+adjustments. The Ingress is listening to the host entry "template.example.com",
+which is obviously not pointing to your Kubernetes instance. For k3s, you need
+to identify the host address and remember it. For minikube, you can
+perform the command `minikube ip` and remember the address.
+
+Now you can create a host entry for you machine, where template.example.com
+points to this IP address. In Linux, you need to adjust the `/etc/hosts` files
+and add an entry similar to the below example:
+
+```txt
+...SNIP...
+
+192.168.49.2 template.example.com
+```
+
+There are also options to this without sudo privileges as described in this
+[StackExchange question](https://unix.stackexchange.com/questions/10438/can-i-create-a-user-specific-hosts-file-to-complement-etc-hosts)
 
 ## Contribute
 

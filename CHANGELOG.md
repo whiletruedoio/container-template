@@ -31,6 +31,9 @@ This file is the changelog of
 - Added: HTML linter
 - Updated: CI dependencies for new tests added
 - Updated: CI and CLI behavior now different
+- Added: Cleanup for functional test container
+- Added: kubernetes deployment example
+- Added: kubernetes tests and scans
 
 ## [MAJOR.MINOR.PATCH-LABEL] - YYYYMMDD
 
