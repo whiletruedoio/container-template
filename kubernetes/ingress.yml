@@ -14,6 +14,6 @@ spec:
             backend:
               service:
                 name: "template-service"
-                port: 
+                port:
                   number: 80
 ...
