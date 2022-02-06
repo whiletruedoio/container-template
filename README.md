@@ -4,6 +4,7 @@ reference: https://commonmark.org/
 -->
 
 [![Cirrus CI - Base Branch Build Status](https://img.shields.io/cirrus/github/whiletruedoio/container-template?logo=Cirrus-ci)](https://cirrus-ci.com/github/whiletruedoio/container-template)
+[![CodeFactor](https://www.codefactor.io/repository/github/whiletruedoio/container-template/badge)](https://www.codefactor.io/repository/github/whiletruedoio/container-template)
 [![Docker Image Version](https://img.shields.io/docker/v/whiletruedoio/template?logo=Docker&label=Release&sort=semver)](https://hub.docker.com/r/whiletruedoio/template)
 [![GitHub Tag (latest SemVer)](https://img.shields.io/github/v/tag/whiletruedoio/container-template?logo=GitHub&label=Release&sort=semver)](https://github.com/whiletruedoio/container-template/releases)
 [![GitHub issues](https://img.shields.io/github/issues/whiletruedoio/container-template)](https://github.com/whiletruedoio/container-template/issues)
