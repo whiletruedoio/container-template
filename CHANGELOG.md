@@ -9,9 +9,13 @@ This file is the changelog of
 
 ## [Unreleased]
 
+Please note down unreleased changes here.
+
 ## [0.9.0] - 20220205
 
 This marks the initial release.
+
+### Added
 
 - Added: container build and run template
 - Added: Kubernetes run template
